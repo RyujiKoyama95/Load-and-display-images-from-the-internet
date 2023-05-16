@@ -107,7 +107,9 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
             .crossfade(true)
             .build(),
         contentDescription = stringResource(id = R.string.mars_photo),
-        contentScale = ContentScale.FillBounds
+        contentScale = ContentScale.FillBounds,
+        error = painterResource(id = R.drawable.ic_broken_image),
+        placeholder = painterResource(id = R.drawable.loading_img)
     )
 }
 
