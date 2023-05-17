@@ -19,8 +19,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -46,7 +51,7 @@ fun HomeScreen(
 ) {
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier)
-        is MarsUiState.Success -> MarsPhotoCard(photo = marsUiState.photos, modifier = modifier)
+        is MarsUiState.Success -> PhotosGridScreen(photos = marsUiState.photos, modifier = modifier)
         is MarsUiState.Error -> ErrorScreen(retryAction, modifier)
     }
 }
@@ -111,6 +116,19 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
         error = painterResource(id = R.drawable.ic_broken_image),
         placeholder = painterResource(id = R.drawable.loading_img)
     )
+}
+
+@Composable
+fun PhotosGridScreen(photos: List<MarsPhoto>, modifier: Modifier = Modifier) {
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(150.dp),
+        contentPadding = PaddingValues(4.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        items(items = photos, key = { photo -> photo.id }) {
+            photo -> MarsPhotoCard(photo = photo)
+        }
+    }
 }
 
 @Preview(showBackground = true)
