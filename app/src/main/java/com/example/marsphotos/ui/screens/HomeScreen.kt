@@ -113,7 +113,7 @@ fun MarsPhotoCard(photo: MarsPhoto, modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(4.dp)
             .aspectRatio(1f),
-        elevation = 8.dp
+        elevation = 8.dp,
     ) {
         // AsyncImageは画像リクエストを非同期で行い、結果をレンダリングするComposable
         AsyncImage(
