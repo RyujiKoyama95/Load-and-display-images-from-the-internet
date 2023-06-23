@@ -1,3 +1,4 @@
-Codelab by Google
+# Load and display images from the internet
 
-Load and display images from the internet
+- For Codelab practice
+- Codelab by Google
